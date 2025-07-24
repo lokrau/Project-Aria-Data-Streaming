@@ -34,3 +34,24 @@ This is contained in the folder `stream_sound`. The file `stream_sound.py` strea
     ```
 
 3. After you are done recording, stop the script with `Ctrl+C`. The recorded audio will be saved in `recorded_audio.wav`.
+
+#### 2. Live gaze estimation
+
+This is contained in the folder `live_gaze_estimation`. The file `live_gaze_estimation.py` streams the eye images live from the glasses and estimates the gaze direction using a pre-trained model which is supplied by Meta for Gaze Estimation from VRS files (see [here](https://github.com/facebookresearch/projectaria_eyetracking)). The estimated gaze is directly visualized on the RGB stream from the glasses. To use this script, run the following command in the terminal:
+1. Start the data stream from the glasses in the terminal:
+    1. Using a USB connection to the glasses:
+        ```bash
+            aria streaming start --interface usb --use-ephemeral-certs --profile profile18
+        ```
+    
+    2. Using a Wi-Fi connection to the glasses (DEVICE_IP can be found in the Project Aria app):
+        ```bash
+            aria streaming start --interface wifi --use-ephemeral-certs --device-ip [DEVICE_IP] --profile profile18
+        ```
+
+2. After the connection is established, run the script:
+    ```bash
+        python -m live_gaze_estimation
+    ```
+
+3. After you are done you can either stop the script by pressing q on the RGB stream window or by stopping the script with `Ctrl+C`.
